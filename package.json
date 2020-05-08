@@ -16,6 +16,8 @@
     "eslint": "^6.8.0"
   },
   "scripts": {
-    "deploy": "serverless deploy"
+    "deploy": "npm run docker:build && npm run serverless:deploy",
+    "docker:build": "docker build -t lambda_build:latest -f dockerfile.build .",
+    "serverless:deploy": "docker run --rm -v ~/.aws/:/root/.aws:ro lambda_build:latest serverless deploy"
   }
 }
