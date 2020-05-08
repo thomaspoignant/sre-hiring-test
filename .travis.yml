@@ -22,4 +22,4 @@ deploy:
     provider: script
     script: npm run deploy
     on:
-        branch: tag
+        tags: true
