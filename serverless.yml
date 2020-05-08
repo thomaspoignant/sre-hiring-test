@@ -1,0 +1,49 @@
+service: crop-image
+
+custom:
+  # Bucket name where the images are located.
+  imgBucket: tpoi-aircall-bucket
+
+provider:
+  name: aws
+  runtime: nodejs12.x
+  region: eu-west-1
+  stage: ${opt:stage, 'dev'}
+  stackName: ${opt:stage, 'dev'}-${self:service}
+  memorySize: 512
+  apiGateway:
+    binaryMediaTypes:
+      - 'multipart/form-data'
+  environment:
+    S3_BUCKET: ${self:custom.imgBucket}
+
+  # IAM configuration to let the lambda access to S3 bucket.
+  iamRoleStatements:
+    - Effect: Allow
+      Action:
+        - s3:PutObject
+        - s3:PutObjectAcl
+      Resource: "arn:aws:s3:::${self:custom.imgBucket}/*"
+
+package:
+  # We include only needed files to increase speed of deployment/start of the lambda.
+  include:
+    - ./*.js
+    - node_modules/**
+
+functions:
+  crop-image:    
+    handler: app.lambdaHandler
+    events:
+      - http:
+          path: /image
+          method: post
+
+resources:
+  Resources:
+    # This resource is the bucket where the images are saved.
+    S3Bucket:
+      Type: AWS::S3::Bucket
+      Properties:
+        BucketName: ${self:custom.imgBucket}
+        AccessControl: PublicRead
