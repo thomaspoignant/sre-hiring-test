@@ -5,7 +5,7 @@ cache:
   directories:
   - node_modules
 before_install:
-- ./ci/aws_credentials.sh
+- bash ci/aws_credentials.sh
 before_script:
 - npm install
 - npm build .
