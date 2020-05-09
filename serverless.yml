@@ -17,6 +17,9 @@ provider:
       - 'multipart/form-data'
   environment:
     S3_BUCKET: ${self:custom.imgBucket}
+  tracing:
+    apiGateway: true
+    lambda: true
 
   # IAM configuration to let the lambda access to S3 bucket.
   iamRoleStatements:
