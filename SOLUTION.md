@@ -1,13 +1,13 @@
 # Solution - Thomas Poignant
 Here is my solution to the SRE aircall test.
-
+[![Build Status](https://travis-ci.com/thomaspoignant/sre-hiring-test.svg?branch=master)](https://travis-ci.com/thomaspoignant/sre-hiring-test)
 
 # Result
 The code is deployed on my personal AWS account.
 
 You can upload your image with this command:
 ```shell
-curl -X POST https://2an99qlb8i.execute-api.eu-west-1.amazonaws.com/prod/image \
+curl -X POST https://o8eaa6dwbc.execute-api.eu-west-1.amazonaws.com/prod/image \
 --form 'file=@filename.jpg' \
 --form 's3Key=filename.jpg'
 ```
@@ -18,42 +18,34 @@ In our example it will be available at [https://tpoi-aircall-bucket-prod.s3.eu-w
 # Documentation
 
 ## Architecture
+We have a simple serverless architecture, with an api gateway, a lambda and they upload it to S3.
+![Diagram](./docs/diagram.png)
 
-
-## Prerequisite
+## Project information
+### Prerequisite
 Before deploying the project you should have `docker` and set up your AWS credentials.
 
-## Infra as code
+### Infra as code
 The infrastructure as code of this app is build with the [`serverless` framework](https://www.serverless.com/).
 The configuration is available in the [serverless.yml](serverless.yml) file.
 
-## Build the app
-This AWS lambda is build in a docker image.
-To build the image you can run 
+### Build the app
+If you want to deploy your lambda to the dev environment, you can still use:
 ```shell
-npm run docker:build
+npm run deploy
 ```
+The difference is that we use docker to build and deploy the lambda.
 
-We also use the image to deploy the infra-structure
-```shell
-npm run serverless:deploy
-```
+# CI/CD
+The CI/CD is managed by travis, and this action are automaticaly done:
 
-If you want to build and deploy at the same time, just run `npm run deploy` like you was doing before.
+- For each commits we build the solution and we run the tests.
+- For each commits on `master` branch we are deploying the `dev` environment.
+- For each tags named `vX.X.X` we are deploying the `prod` environment.
 
+# Logs
+All the logs of the lambda are available in cloudwatch.
 
-
-
-- use serverless
-- use docker for the build
-- use docker for the deployment
-
-
--> logs --> cloudwatch
-
-
-
-
-
-
-[![Build Status](https://travis-ci.com/thomaspoignant/sre-hiring-test.svg?branch=master)](https://travis-ci.com/thomaspoignant/sre-hiring-test)
+# Tracing
+Xray is activate on the API Gateway and the lambda.
+You can also use the Xray SDK to add monitoring inside your lambda.
