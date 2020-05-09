@@ -23,7 +23,7 @@ jobs:
   include:
     - stage: lint
       name: "lint serverless file"
-      script: docker run --rm -v serverless.yml:/yaml sdesbure/yamllint yamllint serverless.yml
+      script: docker run --rm -v $(pwd):/yaml sdesbure/yamllint yamllint serverless.yml
 
     - stage: build 
       name: "Build the lambda in a docker image"
