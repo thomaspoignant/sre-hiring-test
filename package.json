@@ -18,6 +18,9 @@
   "scripts": {
     "deploy": "npm run docker:build && npm run serverless:deploy",
     "docker:build": "docker build -t lambda_build:latest -f dockerfile.build .",
-    "serverless:deploy": "docker run --rm -v ~/.aws/:/root/.aws:ro lambda_build:latest serverless deploy"
+    "deploy:dev": "docker run --rm -v ~/.aws/:/root/.aws:ro lambda_build:latest serverless deploy",
+    "package:prod": "docker run --rm -v $(pwd)/target:/opt/app/target lambda_build:latest serverless package --stage prod --package target/prd",
+    "deploy:prod": "docker run --rm -v ~/.aws/:/root/.aws:ro -v $(pwd)/target:/opt/app/target lambda_build:latest serverless deploy --stage prod --package target/prd"
+
   }
 }

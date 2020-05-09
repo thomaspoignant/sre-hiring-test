@@ -1,25 +1,55 @@
 language: node_js
 node_js:
-    - stable
+  - stable
+
+services:
+  - docker
 
 env:
-    global:
-    - secure: nwnXF8hVFmr8lZ9UOC39qlAtGuxfvK7OsCeDmChLr1inMcYXE6ErkmfIrwLhGJpm1abb6ODswSzd0SFfVk5d7VNkDjR31DMWNK2J2nl1fbmsL360yJl0FYAb68BOJHoi+obw8T1tyx5gSnOXX4bapCfu/Qd8i/J5GwpK+AP9WHq5O4ZjRxUwFX2FjTgBBzEes/AR+9nmBahJHy2hpU9H67+RxSPE9zbj976gGRVUaNoUsRvkvfjFOm81f6n4ff79o/kKuuUDu5KHoy1pePyX4cBY+OBzzVTD6yWhJF4AgOoMw4onJ8sqDnm+1Jpn+LvyBIrGvUU86il8im08GpOpMQsTYXXLiX0NSbc/zewQd7AXj7z1bNmzYcMhoh+tAkMKM2GBlJ7WbbiFlwvphhVM+attffMFDBRPELdF36v2n0QW3zQcYwe/S0hsfhYGf7s01FOxniYpqmhUV2nyMutZcTc5aaCrzEGKLiZ0hWYXNs5yijAP30hKpMKLxiC4t+T1MGxwfycAp9OGH9+urM0Ju1p2TwEMdlP73JurCoR10aaUVjeDrD1SwWfCeqp+enGiqEA9jRLQtqM0ROTVbQJKNIwDn8heFfUMnjE8kGoZVrxKPHv/Sam8DyEJ5Oq9TuHE6gcLRmI3YQ5c+0Z697QNG3g1JfwCipmLBFi+YOSKFqM=
-    - secure: R/MeJZYROoAk0wVnh0GZ0g3d7jeF88mIu7gvewltUEMOWoMJ8pKgT3Qbm/tvo4lVPQWr9Wmr05P08agCz1RqrED4pPNfQDQZtH9e9FgEDZXDgNvV6388ysI/HFpjiwQvEAjcZTYyUSXRkLO3lR964BgSmz4lhgh6/e9/PlkTlee9lcLktJzNpSIxJR0onDwdIs59x4bMQXF+UWa6i5ziImGVWfl5A1wkImM/z4rVoQcZLpoZ7SfZVnCGeN1tqJ93WpyNXsVAE/29FlMT/tMVpYNbBWPl9sdYI49EiftoOijO/Y7s1XAz/qmo8ef2VXcKVzOKMOmQzhNED+gVFJWQSuJiPmStqeELuP51jolmmu1NMaXGFP1ryCfbap/SIptK5OzkRBXWsAbF8pU2uRN2p3o6INSwzvK0Rwebu0gK6U5ho+Nk8pvefu+z5dYUNFSm/7Z0M7Y9++tw5pLvHwW8eio2chTGD75538bdJfvuSxAcVDeYR+OmnSBEU/nlASk4BvMsklvkUmF5LMfAjs9VrQAElZ/KxtliJDMGar1JH4Y0de1+vTmugXZHohBBz2o9Cd5WM54GeQFhzo8gDxYmLOqQO1c4aVlTdd4hiwUKyOVIc70brO8vrkcfFaRCwhP21nKaTwhv8jwAxNufCQp2dKGNUbs/d9+BjrjfmpE+7mU=
+  global:
+  - secure: nwnXF8hVFmr8lZ9UOC39qlAtGuxfvK7OsCeDmChLr1inMcYXE6ErkmfIrwLhGJpm1abb6ODswSzd0SFfVk5d7VNkDjR31DMWNK2J2nl1fbmsL360yJl0FYAb68BOJHoi+obw8T1tyx5gSnOXX4bapCfu/Qd8i/J5GwpK+AP9WHq5O4ZjRxUwFX2FjTgBBzEes/AR+9nmBahJHy2hpU9H67+RxSPE9zbj976gGRVUaNoUsRvkvfjFOm81f6n4ff79o/kKuuUDu5KHoy1pePyX4cBY+OBzzVTD6yWhJF4AgOoMw4onJ8sqDnm+1Jpn+LvyBIrGvUU86il8im08GpOpMQsTYXXLiX0NSbc/zewQd7AXj7z1bNmzYcMhoh+tAkMKM2GBlJ7WbbiFlwvphhVM+attffMFDBRPELdF36v2n0QW3zQcYwe/S0hsfhYGf7s01FOxniYpqmhUV2nyMutZcTc5aaCrzEGKLiZ0hWYXNs5yijAP30hKpMKLxiC4t+T1MGxwfycAp9OGH9+urM0Ju1p2TwEMdlP73JurCoR10aaUVjeDrD1SwWfCeqp+enGiqEA9jRLQtqM0ROTVbQJKNIwDn8heFfUMnjE8kGoZVrxKPHv/Sam8DyEJ5Oq9TuHE6gcLRmI3YQ5c+0Z697QNG3g1JfwCipmLBFi+YOSKFqM=
+  - secure: R/MeJZYROoAk0wVnh0GZ0g3d7jeF88mIu7gvewltUEMOWoMJ8pKgT3Qbm/tvo4lVPQWr9Wmr05P08agCz1RqrED4pPNfQDQZtH9e9FgEDZXDgNvV6388ysI/HFpjiwQvEAjcZTYyUSXRkLO3lR964BgSmz4lhgh6/e9/PlkTlee9lcLktJzNpSIxJR0onDwdIs59x4bMQXF+UWa6i5ziImGVWfl5A1wkImM/z4rVoQcZLpoZ7SfZVnCGeN1tqJ93WpyNXsVAE/29FlMT/tMVpYNbBWPl9sdYI49EiftoOijO/Y7s1XAz/qmo8ef2VXcKVzOKMOmQzhNED+gVFJWQSuJiPmStqeELuP51jolmmu1NMaXGFP1ryCfbap/SIptK5OzkRBXWsAbF8pU2uRN2p3o6INSwzvK0Rwebu0gK6U5ho+Nk8pvefu+z5dYUNFSm/7Z0M7Y9++tw5pLvHwW8eio2chTGD75538bdJfvuSxAcVDeYR+OmnSBEU/nlASk4BvMsklvkUmF5LMfAjs9VrQAElZ/KxtliJDMGar1JH4Y0de1+vTmugXZHohBBz2o9Cd5WM54GeQFhzo8gDxYmLOqQO1c4aVlTdd4hiwUKyOVIc70brO8vrkcfFaRCwhP21nKaTwhv8jwAxNufCQp2dKGNUbs/d9+BjrjfmpE+7mU=
 
 cache:
   directories:
-  - node_modules
+    - node_modules
 
-before_install:
-    - bash ci/aws_credentials.sh
+install:
+  - bash ci/aws_credentials.sh
+  - sudo pip install yamllint
 
-before_script:
-    - npm install
-    - npm build .
 
-deploy:
-    provider: script
-    script: npm run deploy
-    on:
+jobs:
+  include:
+    - stage: lint
+      name: "lint serverless file"
+      script: docker run --rm -v serverless.yml:/yaml sdesbure/yamllint yamllint serverless.yml
+
+    - stage: build 
+      name: "Build the lambda in a docker image"
+      script: npm run docker:build
+
+    - stage: dev_deploy
+      name: "Deploy on the dev environment"
+      script: npm run deploy:dev
+      on:
+        branch: master
+    
+    - stage: prod_deploy
+      name: "Deploy on the prod environment"
+      before_script:
+        - mkdir target
+      script:
+        - npm run package:prod
+        - npm run deploy:prod
+      on:
+        tags: true
+
+    - stage: upload_artifacts
+      provider: releases
+      api_key:
+        secure: iZZ90rHnESTkAgEaiGeYa0sYnKycJjs7pDIjRVSDWW2ptF6triBEERu3YeLUJX6C/bdgfVqoncV0INxU2XaL7zFO8u+9zMnQlrZAo/y6P6uSPFGtX9p5s6vfLM9BcwuOFvIv4px8zpUmhzG0bsrZop6ZiMhAv1Wb6ep0Kc6B9tEP7/rasCgLb0lam5ems88Pex8OTxOJtShSMMgCnZBZQ44UcZYjljUAaHju7oX9IVIUJx1oytiZVgHfIJx4OqD++/ie29971poVv48kFueT26GATlTwAJ1Swt/gGm8RoR1Qsph/It7MJ50wPMeCCGGO1npptugdFXVo+/B727dmucWtO9bw982UWM0bPuk0uAE1jDFMduGyT7Dinn+3veNnwaI01E1uj7JLQhpK3Lxb+eYmHJXg4SBcN4Ki+pl5LpCl0hytQU5Gk3sx/tBCW0AfwrtJHYzXDL5mq7v4hDjMZbn+prWMYwKIqcOVDJt0iJOYZSCXufdw4Q2BToYI1GsEj+PLYLy1DvKvwvkTfKtSK5gk5ZaPqxquaIMVbYHKRCxtsQbOA97iLSmjwR8PqJWSaFylHjWXonrBvQaaJEgEb1zqw1+501ntxnSpwQIGhrkHL0KOUnUJOXDsp7wzlzBJ6m1qrMwSoTa1jUWpO6tc4UIfQWe23jvQ3gEhFG9wk2M=
+      file: target/prod
+      on:
+        repo: thomaspoignant/sre-hiring-test
         tags: true
