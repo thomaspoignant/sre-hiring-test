@@ -1,8 +1,9 @@
+---
 service: crop-image
 
 custom:
   # Bucket name where the images are located.
-  imgBucket: tpoi-aircall-bucket
+  imgBucket: tpoi-aircall-bucket-${opt:stage, 'dev'}
 
 provider:
   name: aws
@@ -26,13 +27,16 @@ provider:
       Resource: "arn:aws:s3:::${self:custom.imgBucket}/*"
 
 package:
-  # We include only needed files to increase speed of deployment/start of the lambda.
+  # We include only needed files to increase deployment/start speed.
+  exclude:
+    - ./*
+    - ./*/**
   include:
     - ./*.js
-    - node_modules/**
+    - ./node_modules/**
 
 functions:
-  crop-image:    
+  crop-image:
     handler: app.lambdaHandler
     events:
       - http:
