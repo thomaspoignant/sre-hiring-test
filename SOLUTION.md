@@ -44,6 +44,8 @@ The CI/CD is managed by travis, and this action are automaticaly done:
 - For each commits on `master` branch we are deploying the `dev` environment.
 - For each tags named `vX.X.X` we are deploying the `prod` environment.
 
+You can see the dashboard here : [https://travis-ci.com/github/thomaspoignant/sre-hiring-test](https://travis-ci.com/github/thomaspoignant/sre-hiring-test)
+
 # Logs
 All the logs of the lambda are available in cloudwatch.
 
