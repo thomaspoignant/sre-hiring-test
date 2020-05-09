@@ -59,5 +59,3 @@ jobs:
         on:
           repo: thomaspoignant/sre-hiring-test
           tags: true
-
-      
