@@ -19,9 +19,9 @@ install:
 
 stages:
   - test
-  - dev_deploy
+  - name: dev_deploy
     if: branch = master
-  - prod_deploy
+  - name: prod_deploy
     if: (tag =~ ^v)
 
 jobs:
