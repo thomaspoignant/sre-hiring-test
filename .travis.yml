@@ -17,22 +17,31 @@ cache:
 install:
   - bash ci/aws_credentials.sh
 
+stages:
+  - test
+  - dev_deploy
+    if: branch = master
+  - prod_deploy
+    if: (tag =~ ^v)
+
 jobs:
   include:
-    - stage: lint
+    - stage: test
       name: "lint serverless file"
       before_script: sudo pip install yamllint
       script: docker run --rm -v $(pwd):/yaml sdesbure/yamllint yamllint serverless.yml
 
+    - stage: test
+      name: "test your nodejs project"
+      script: npm run test
+
     - stage: dev_deploy
       name: "Deploy on the dev environment"
-      if: branch = master
       script: npm run deploy
       
     
     - stage: prod_deploy
       name: "Deploy on the prod environment"
-      if: (tag =~ ^v)
       before_script:
         - mkdir target
       script:
