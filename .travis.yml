@@ -25,13 +25,9 @@ jobs:
       name: "lint serverless file"
       script: docker run --rm -v $(pwd):/yaml sdesbure/yamllint yamllint serverless.yml
 
-    - stage: build 
-      name: "Build the lambda in a docker image"
-      script: npm run docker:build
-
     - stage: dev_deploy
       name: "Deploy on the dev environment"
-      script: npm run deploy:dev
+      script: npm run deploy
       on:
         branch: master
     
@@ -40,16 +36,19 @@ jobs:
       before_script:
         - mkdir target
       script:
+        - npm run docker:build
         - npm run package:prod
         - npm run deploy:prod
       on:
         tags: true
+      deploy:
+        provider: releases
+        script: echo "Deploying to GitHub releases ..."
+        api_key:
+          secure: iZZ90rHnESTkAgEaiGeYa0sYnKycJjs7pDIjRVSDWW2ptF6triBEERu3YeLUJX6C/bdgfVqoncV0INxU2XaL7zFO8u+9zMnQlrZAo/y6P6uSPFGtX9p5s6vfLM9BcwuOFvIv4px8zpUmhzG0bsrZop6ZiMhAv1Wb6ep0Kc6B9tEP7/rasCgLb0lam5ems88Pex8OTxOJtShSMMgCnZBZQ44UcZYjljUAaHju7oX9IVIUJx1oytiZVgHfIJx4OqD++/ie29971poVv48kFueT26GATlTwAJ1Swt/gGm8RoR1Qsph/It7MJ50wPMeCCGGO1npptugdFXVo+/B727dmucWtO9bw982UWM0bPuk0uAE1jDFMduGyT7Dinn+3veNnwaI01E1uj7JLQhpK3Lxb+eYmHJXg4SBcN4Ki+pl5LpCl0hytQU5Gk3sx/tBCW0AfwrtJHYzXDL5mq7v4hDjMZbn+prWMYwKIqcOVDJt0iJOYZSCXufdw4Q2BToYI1GsEj+PLYLy1DvKvwvkTfKtSK5gk5ZaPqxquaIMVbYHKRCxtsQbOA97iLSmjwR8PqJWSaFylHjWXonrBvQaaJEgEb1zqw1+501ntxnSpwQIGhrkHL0KOUnUJOXDsp7wzlzBJ6m1qrMwSoTa1jUWpO6tc4UIfQWe23jvQ3gEhFG9wk2M=
+        file: target/prod
+        on:
+          repo: thomaspoignant/sre-hiring-test
+          tags: true
 
-    - stage: upload_artifacts
-      provider: releases
-      api_key:
-        secure: iZZ90rHnESTkAgEaiGeYa0sYnKycJjs7pDIjRVSDWW2ptF6triBEERu3YeLUJX6C/bdgfVqoncV0INxU2XaL7zFO8u+9zMnQlrZAo/y6P6uSPFGtX9p5s6vfLM9BcwuOFvIv4px8zpUmhzG0bsrZop6ZiMhAv1Wb6ep0Kc6B9tEP7/rasCgLb0lam5ems88Pex8OTxOJtShSMMgCnZBZQ44UcZYjljUAaHju7oX9IVIUJx1oytiZVgHfIJx4OqD++/ie29971poVv48kFueT26GATlTwAJ1Swt/gGm8RoR1Qsph/It7MJ50wPMeCCGGO1npptugdFXVo+/B727dmucWtO9bw982UWM0bPuk0uAE1jDFMduGyT7Dinn+3veNnwaI01E1uj7JLQhpK3Lxb+eYmHJXg4SBcN4Ki+pl5LpCl0hytQU5Gk3sx/tBCW0AfwrtJHYzXDL5mq7v4hDjMZbn+prWMYwKIqcOVDJt0iJOYZSCXufdw4Q2BToYI1GsEj+PLYLy1DvKvwvkTfKtSK5gk5ZaPqxquaIMVbYHKRCxtsQbOA97iLSmjwR8PqJWSaFylHjWXonrBvQaaJEgEb1zqw1+501ntxnSpwQIGhrkHL0KOUnUJOXDsp7wzlzBJ6m1qrMwSoTa1jUWpO6tc4UIfQWe23jvQ3gEhFG9wk2M=
-      file: target/prod
-      on:
-        repo: thomaspoignant/sre-hiring-test
-        tags: true
+      
