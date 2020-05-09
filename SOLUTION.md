@@ -1,6 +1,7 @@
 # Solution - Thomas Poignant
+[![Build Status](https://travis-ci.com/thomaspoignant/sre-hiring-test.svg?branch=master)](https://travis-ci.com/thomaspoignant/sre-hiring-test)  
 Here is my solution to the SRE aircall test.
-[![Build Status](https://travis-ci.com/thomaspoignant/sre-hiring-test.svg?branch=master)](https://travis-ci.com/thomaspoignant/sre-hiring-test)
+
 
 # Result
 The code is deployed on my personal AWS account.
