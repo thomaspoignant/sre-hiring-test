@@ -46,6 +46,8 @@ The CI/CD is managed by travis, and this action are automaticaly done:
 
 You can see the dashboard here : [https://travis-ci.com/github/thomaspoignant/sre-hiring-test](https://travis-ci.com/github/thomaspoignant/sre-hiring-test)
 
+Your releases are available in [Github Release](https://github.com/thomaspoignant/sre-hiring-test/releases), with the binary and the cloudformation template.
+
 # Logs
 All the logs of the lambda are available in cloudwatch.
 
